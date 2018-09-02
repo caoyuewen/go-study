@@ -1,5 +1,5 @@
 /*
-*Desc:4.3 channel --page:178  code:4-9
+*Desc:4.3 channel --page:178  code:4-9  channel 的关闭
 *CreateBy:Cooyw
 *Time:2018/9/2
 */
