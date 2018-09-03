@@ -31,13 +31,19 @@ func receiver() {
 	fmt.Println("Received a sync single and wait a second...[recieve] ")
 	time.Sleep(time.Second)
 
-	for {
-		if elem, ok := <-strChan; ok {
-			fmt.Println("Received:", elem, "[reciever]")
-		} else {
-			break
-		}
+	//for {
+	//	if elem, ok := <-strChan; ok {
+	//		fmt.Println("Received:", elem, "[receiver]")
+	//	} else {
+	//		break
+	//	}
+	//}
+
+	for elem:=range strChan{
+		fmt.Println("Received:", elem, "[reciever]")
 	}
+
+
 	fmt.Println("Stopd receiver")
 	syncChan2 <- struct{}{}
 }
