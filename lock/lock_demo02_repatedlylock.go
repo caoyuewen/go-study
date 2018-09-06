@@ -13,7 +13,7 @@ import (
 func main() {
 
 	/*
-		回复运行时候恐慌 在这里是徒劳  go1.8之前可以恢复，但是会导致很严重的问题(比如这个重复解锁的goroutine会永久阻塞)
+		回复运行时候恐慌 在这里是徒劳  go1.8之前可以恢复运行时恐慌，但是会导致很严重的问题(比如这个重复解锁的goroutine会永久阻塞)
 	*/
 	defer func() {
 		fmt.Println("Try to recover the painc")
