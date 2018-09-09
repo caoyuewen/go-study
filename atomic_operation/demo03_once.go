@@ -21,11 +21,10 @@ func main() {
 	max := rand.Intn(100)
 	fmt.Println(max)
 	for i := 0; i < max; i++ {
+		//无论循环多少次 只会执行一次
 		once.Do(func() {
 			count++
 		})
 	}
-
 	fmt.Println(count)
-
 }
