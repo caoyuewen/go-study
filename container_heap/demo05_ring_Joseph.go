@@ -25,9 +25,9 @@ type player struct {
 
 func main() {
 	const (
-		playerNum           = 41 //玩家总人数
+		playerNum           = 42 //玩家总人数
 		dieNum              = 3  //死亡数字 报到该数 死亡
-		firstReportPosition = 4  //第一个报数的位置
+		firstReportPosition = 1  //第一个报数的位置
 	)
 	var (
 		report = 1 //从那个数开始报数
@@ -44,9 +44,13 @@ func main() {
 
 	//查看唯一存活者
 	showAlive(r)
+
+	//公式验证 默认从1开始
+	alivePlayer := formula(playerNum, dieNum)
+	fmt.Println("验证最终活着的人", alivePlayer)
 }
 
-//游戏开始
+//游戏开始 //最终一个人活着
 func playGame(r *ring.Ring, dieNum, report, playerNum int, ) {
 	var diePlayCount int
 	fmt.Println("Game start!")
@@ -112,4 +116,15 @@ func showAlive(r *ring.Ring) {
 		}
 		r = r.Next()
 	}
+}
+
+//公式
+//此公式默认是从第一个开始
+func formula(playerNum, dieNumber int) int {
+	var p = 0
+	for i := 2; i <= playerNum; i++ {
+		p = (p + dieNumber) % i
+	}
+	return p + 1
+
 }
