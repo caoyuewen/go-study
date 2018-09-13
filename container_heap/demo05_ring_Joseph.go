@@ -27,7 +27,7 @@ func main() {
 	const (
 		playerNum           = 41 //玩家总人数
 		dieNum              = 3  //死亡数字 报到该数 死亡
-		firstReportPosition = 1  //第一个报数的位置
+		firstReportPosition = 4  //第一个报数的位置
 	)
 	var (
 		report = 1 //从那个数开始报数
@@ -37,7 +37,7 @@ func main() {
 	r := initPlayer(playerNum)
 
 	//初始化位置
-	initPosition(r, firstReportPosition)
+	r = initPosition(r, firstReportPosition)
 
 	//开始
 	playGame(r, dieNum, report, playerNum)
@@ -53,13 +53,13 @@ func playGame(r *ring.Ring, dieNum, report, playerNum int, ) {
 	for {
 		p := r.Value.(*player)
 		if p.isAlive {
-			fmt.Print("player ", p.position, " report:",report)
+			fmt.Print("player ", p.position, " report:", report)
 			if report == dieNum {
 				fmt.Println("  daied")
 				p.isAlive = false
 				report = 0
 				diePlayCount++
-			}else {
+			} else {
 				fmt.Println()
 			}
 			report++
@@ -74,11 +74,12 @@ func playGame(r *ring.Ring, dieNum, report, playerNum int, ) {
 }
 
 //初始化第一个报数的位置
-func initPosition(r *ring.Ring, position int) {
+func initPosition(r *ring.Ring, position int) *ring.Ring {
+
 	if r.Value.(*player).position != position {
 		r = r.Move(position - 1)
 	}
-
+	return r
 }
 
 //初始化玩家
