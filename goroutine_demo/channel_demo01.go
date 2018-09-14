@@ -1,5 +1,3 @@
-
-
 /*
 *Desc: 4.3 channel --page:173  code:4-6
 *CreateBy:Cooyw
@@ -13,20 +11,21 @@ import (
 	"time"
 )
 
-var strChan = make(chan string, 3)
-var syncChan1 = make(chan struct{}, 1)
-var syncChan2 = make(chan struct{}, 2)
-
 func main() {
-	go receiver()
-	go sender()
+
+	var strChan = make(chan string, 3)
+	var syncChan1 = make(chan struct{}, 1)
+	var syncChan2 = make(chan struct{}, 2)
+
+	go receiver(strChan,syncChan1,syncChan2)
+	go sender(strChan,syncChan1,syncChan2)
 
 	<-syncChan2
 	<-syncChan2
 }
 
 //接收方
-func receiver() {
+func receiver(strChan chan string, syncChan1, syncChan2 chan struct{}) {
 	<-syncChan1
 	fmt.Println("Received a sync single and wait a second...[recieve] ")
 	time.Sleep(time.Second)
@@ -39,17 +38,16 @@ func receiver() {
 	//	}
 	//}
 
-	for elem:=range strChan{
+	for elem := range strChan {
 		fmt.Println("Received:", elem, "[reciever]")
 	}
-
 
 	fmt.Println("Stopd receiver")
 	syncChan2 <- struct{}{}
 }
 
 //发送方
-func sender() {
+func sender(strChan chan string, syncChan1, syncChan2 chan struct{}) {
 	for _, elem := range []string{"a", "b", "c", "d"} {
 		strChan <- elem
 		fmt.Println("Sent:", elem, "[sender]")
