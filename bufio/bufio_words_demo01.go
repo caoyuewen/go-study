@@ -22,11 +22,13 @@ func main() {
 
 	// Set the split function for the scanning operation.
 	//scanner.Split(bufio.ScanWords)//注释这行代码  默认会以\n拆分
+	//scanner.Split(bufio.ScanBytes)//注释这行代码  默认会以\n拆分
+	//scanner.Split(bufio.ScanRunes)//注释这行代码  默认会以\n拆分
 
 	//count the words
 	var count int
 	for scanner.Scan() {
-		//fmt.Println(scanner.Text())
+		fmt.Println(scanner.Text())
 		count++
 	}
 
