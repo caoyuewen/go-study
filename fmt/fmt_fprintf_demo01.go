@@ -14,7 +14,8 @@ import (
 
 func main() {
 
-	fmt.Fprintf(os.Stderr, "fp: an %s\n", "test")
+	fmt.Fprintf(os.Stderr, "fp1: an %s\n", "test")
+	fmt.Fprintf(os.Stderr, "fp2: an %s\n", "test")
 	fmt.Printf("p: an %s\n", "test")
 
 }
