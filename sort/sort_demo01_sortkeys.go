@@ -77,8 +77,7 @@ func main() {
 
 	By(sortByMass).Sort(planets)
 	fmt.Println(planets)
-
-
+	
 	By(sortByDistance).Sort(planets)
 	fmt.Println(planets)
 }
