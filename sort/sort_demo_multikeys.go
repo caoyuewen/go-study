@@ -30,7 +30,7 @@ func (ms *multiSort) Sort(changes []Change) {
 	sort.Sort(ms)
 }
 
-func OrderdBy(less ...lessFunc) *multiSort {
+func OrderedBy(less ...lessFunc) *multiSort {
 	return &multiSort{
 		less: less,
 	}
@@ -91,13 +91,13 @@ func main() {
 		return c1.lines < c2.lines
 	}
 
-	OrderdBy(user).Sort(changes)
+	OrderedBy(user).Sort(changes)
 	fmt.Println(changes)
 
-	OrderdBy(language).Sort(changes)
+	OrderedBy(language).Sort(changes)
 	fmt.Println(changes)
 
-	OrderdBy(decreasingLines).Sort(changes)
+	OrderedBy(decreasingLines).Sort(changes)
 	fmt.Println(changes)
 
 }
