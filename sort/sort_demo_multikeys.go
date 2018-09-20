@@ -22,7 +22,7 @@ type lessFunc func(p, p1 *Change) bool
 
 type multiSort struct {
 	changes []Change
-	less   []lessFunc
+	less    []lessFunc
 }
 
 func (ms *multiSort) Sort(changes []Change) {
@@ -40,13 +40,11 @@ func (ms *multiSort) Len() int {
 	return len(ms.changes)
 }
 
-
-func (ms *multiSort) Swap(i,j int)  {
+func (ms *multiSort) Swap(i, j int) {
 	ms.changes[i], ms.changes[j] = ms.changes[j], ms.changes[i]
 }
 
-
-func (ms *multiSort) Less(i,j int) bool {
+func (ms *multiSort) Less(i, j int) bool {
 	p, q := &ms.changes[i], &ms.changes[j]
 	var k int
 	for k = 0; k < len(ms.less)-1; k++ {
@@ -87,7 +85,7 @@ func main() {
 		return c1.language < c2.language
 	}
 
-	decreasingLines  := func(c1, c2 *Change) bool {
+	decreasingLines := func(c1, c2 *Change) bool {
 		return c1.lines < c2.lines
 	}
 
@@ -100,13 +98,11 @@ func main() {
 	OrderedBy(decreasingLines).Sort(changes)
 	fmt.Println(changes)
 
+	//现根据user排序  在根据language排序
+	OrderedBy(user, language).Sort(changes)
+	fmt.Println(changes)
+
+	//现根据user排序  在根据language排序 在根据lines排序
+	OrderedBy(user, language, decreasingLines).Sort(changes)
+	fmt.Println(changes)
 }
-
-
-
-
-
-
-
-
-
