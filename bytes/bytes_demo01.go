@@ -8,6 +8,7 @@ import (
 func main() {
 
 	// Interpret Compare's result by comparing it to zero.
+	
 	var a, b []byte
 	a=[]byte("B")
 	b=[]byte("B")
