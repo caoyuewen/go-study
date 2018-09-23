@@ -4,7 +4,6 @@
  * Date: 2018-09-17
  * Time: 10:19
  */
-
 package main
 
 import (
