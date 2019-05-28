@@ -64,7 +64,7 @@ func RsaDecrypt(cipherText []byte) (data []byte, err error) {
 
 func main() {
 
-	origData := "你好我是曹跃文"
+	origData := "你好我是"
 
 	fmt.Printf("原始数据:\n%s\n",origData)
 
